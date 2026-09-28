@@ -1,9 +1,12 @@
-Robotics DSL Zoo
-================
+Robotics DSL Zoo - v0.8.1
+=========================
 
 This is the repository that hosts the bib sources of the Robotics DSL Zoo. The
 generated website is hosted in the gh-pages branch and is online here:
 http://corlab.github.io/dslzoo/
+
+See [CHANGELOG.md](CHANGELOG.md) for release history and
+[DECISIONS.md](DECISIONS.md) for the reasoning behind recent project changes.
 
 How to contribute
 -----------------

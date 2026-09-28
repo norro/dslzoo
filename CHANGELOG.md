@@ -11,6 +11,9 @@ Versioning follows [semver](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `CLAUDE.md` documenting remote/branch conventions for future sessions.
+
 ### Changed
 - `master` renamed to `main`.
 - Restructuring plan approved: consolidate bib source, generator, and docs

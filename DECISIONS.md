@@ -1,5 +1,54 @@
 # Decisions
 
+## 2026-09-28 - Corlab/dslzoo confirmed as legitimate restructuring target, not just the personal fork
+
+Verified via `gh api repos/corlab/dslzoo --jq .permissions` that Arne has
+admin rights directly on `corlab/dslzoo` (the org repo the two publications
+cite), not just push access via a PR-based fork workflow. This supersedes the
+"scope for now is Arne's own fork" alternative noted in the feature-branch
+decision below.
+
+**Why:** the two publications' citations point at `corlab.github.io/dslzoo`,
+not the personal fork - so keeping the reactivation confined to
+`norro/dslzoo` indefinitely would not actually update the cited artifact.
+Admin access means there's no procedural reason (PR review, org membership)
+to avoid working directly against `corlab/dslzoo` once changes are reviewed.
+
+**Alternatives considered:** keep `norro/dslzoo` as the sole target and
+eventually open a PR to `corlab/dslzoo` like an external contributor would -
+unnecessary friction given direct admin access.
+
+## 2026-09-28 - Full restructuring authorized; scientific-citation stability is the one hard constraint
+
+Arne explicitly authorized redesigning branch structure, file layout, and
+tooling from scratch - nothing about the current shape (`master`/`gh-pages`/
+`query`) needs to be preserved for its own sake. The one non-negotiable: the
+two publications citing `corlab.github.io/dslzoo` must keep resolving, or any
+break in that gets an explicit, documented redirect/notice.
+
+**Why:** dslzoo is a citable academic artifact, not just a personal repo -
+restructuring is free, breaking a published citation silently is not.
+
+## 2026-09-28 - Rename `master` to `main`; document the 2014-2020 vs. 2026 tooling generations as an explicit break
+
+Renamed the local `master` branch to `main` (modern default, matches this
+machine's `init.defaultBranch` convention). Approved the "clean break"
+restructuring: consolidate bib source, generator, and docs into `main`; stop
+committing generated HTML at all; build and deploy to `gh-pages` via CI
+instead. A new `PROVENANCE.md` will document this as an explicit
+methodological generation change (tooling X, 2014-2020, hand-maintained vs.
+tooling Y, 2026, automated) in the same spirit as the `query` branch's
+existing documentation of the survey's data-acquisition methodology - not
+hidden or silently rewritten, since readers of the two publications may land
+on this repo years later and need to understand what changed and why.
+
+**Why:** Arne asked explicitly for scientifically clean documentation of any
+break, matching the rigor already applied to the `query` branch.
+
+**Alternatives considered:** evolutionary option (keep `gh-pages` as a
+hand/CI-updated branch but otherwise unchanged structure); split into
+separate bib/generator/site repos (more overhead than warranted here).
+
 ## 2026-09-28 - Reconstruct CHANGELOG.md retroactively from git history
 
 Versions 0.1.0-0.8.0 in `CHANGELOG.md` were generated from `git log` on
@@ -29,20 +78,23 @@ bibtexparser + a templating library) is cheap compared to more searching.
 original script first; postpone regeneration and only maintain the bib file
 for now.
 
-## 2026-09-28 - Work on a feature branch, cherry-pick into master
+## 2026-09-28 - Work on a feature branch, cherry-pick into master (superseded in part 2026-09-28)
 
 All reactivation work (this scaffolding, the future generator rebuild, bib
 updates) happens on `ai/dslzoo-refresh`. `master` stays untouched until Arne
 reviews and cherry-picks specific commits into it.
 
 **Why:** keeps the AI footprint out of `master`'s history by default; Arne
-decides what actually lands and when.
+decides what actually lands and when. The branch-then-review mechanic still
+stands; only the "scope for now is Arne's own fork" alternative below was
+superseded the same day once admin access to `corlab/dslzoo` was confirmed
+(see the entry above) and `master` was renamed to `main`.
 
 **Alternatives considered:** squash-merge the whole branch in one commit once
 reviewed (less granular control per change); work directly against
 `corlab/master` and open PRs upstream, if the goal turns out to be reviving
-the org project rather than just this fork (not chosen - scope for now is
-Arne's own fork).
+the org project rather than just this fork (not chosen at the time - scope
+was Arne's own fork only).
 
 ## 2026-09-28 - Fast-forward the fork to match upstream before starting work
 

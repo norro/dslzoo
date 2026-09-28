@@ -11,6 +11,17 @@ Versioning follows [semver](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- `master` renamed to `main`.
+- Restructuring plan approved: consolidate bib source, generator, and docs
+  into `main`; stop committing generated HTML; build and deploy to
+  `gh-pages` via CI instead. Documented as an explicit tooling-generation
+  break (2014-2020 vs. 2026) rather than a silent rewrite, since this repo
+  is a citable academic artifact - see `DECISIONS.md` and the upcoming
+  `PROVENANCE.md`.
+- Scope widened from "Arne's own fork" to `corlab/dslzoo` directly, the repo
+  the two associated publications actually cite - confirmed admin access.
+
 ## [0.8.1] - 2026-09-28
 
 ### Changed

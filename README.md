@@ -7,6 +7,7 @@ http://corlab.github.io/dslzoo/
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
 [DECISIONS.md](DECISIONS.md) for the reasoning behind recent project changes.
+The draft restructuring plan is in [docs/RESTRUCTURING-PLAN.md](docs/RESTRUCTURING-PLAN.md).
 
 How to contribute
 -----------------

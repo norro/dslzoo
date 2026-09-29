@@ -2,7 +2,7 @@
 
 ## 2026-09-29 - Generator: reuse vs rebuild left open until the original has been searched for
 
-The 2026-09-28 decision to rebuild the site generator without searching further is suspended. The last six site regenerations (2019-09 to 2020-05) were made by D. Wigand, who also edited the templates, and the maintainer may still hold a copy in old personal archives; both are checked first. The plan (docs/RESTRUCTURING-PLAN.md) keeps two generator tracks, reuse and rebuild, that end at the same acceptance tests. Nothing else in the plan waits for this.
+The 2026-09-28 decision to rebuild the site generator without searching further is suspended. The last six site regenerations (2019-09 to 2020-05) were made by a co-author, who also edited the templates, and the maintainer may still hold a copy in old personal archives; both are checked first. The plan (docs/RESTRUCTURING-PLAN.md) keeps two generator tracks, reuse and rebuild, that end at the same acceptance tests. Nothing else in the plan waits for this.
 
 **Why:** the generator ran in at least two environments after 2016, so it plausibly survives. Recovering it would give byte-exact reference output and settle two behaviours (an overview chart formula, the truncation of two author strings) that a rebuild cannot derive from the data.
 **Alternatives considered:** rebuild immediately (the 2026-09-28 decision: cheap, but discards a possibly available reference); delay everything until the search is done (unnecessary, because the securing and preparation phases are independent of the generator).
@@ -76,9 +76,9 @@ any branch, fork, or corlab-org repository - only the bib source and the
 generated HTML output were ever committed. Decided to write a new generator
 rather than keep searching for the original.
 
-**Why:** the original was local tooling (commits authored from
-`anordman@cor-lab.uni-bielefeld.de`, an institute address Arne no longer has
-access to) - low odds of recovery, and a small rebuild (e.g. Python +
+**Why:** the original was local tooling (commits authored from an institute
+address Arne no longer has access to) - low odds of recovery, and a small
+rebuild (e.g. Python +
 bibtexparser + a templating library) is cheap compared to more searching.
 
 **Alternatives considered:** dig through old backups/institute mail for the

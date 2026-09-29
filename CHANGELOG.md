@@ -13,10 +13,10 @@ Versioning follows [semver](https://semver.org/).
 
 ### Added
 - `CLAUDE.md` documenting remote/branch conventions for future sessions.
-- `docs/RESTRUCTURING-PLAN.md`: draft restructuring plan from a read-only
-  investigation (citation surface, current state, phases 0-5, decisions
-  needed). Whether the site generator is rebuilt or a recovered original is
-  reused is left open.
+- `docs/RESTRUCTURING-PLAN.md`: draft restructuring plan (rev 2) from a
+  read-only investigation and an adversarial review (citation surface, current
+  state, phases P0-P4 plus backlog, decisions D01-D10). Whether the site
+  generator is rebuilt or a recovered original is reused is left open.
 
 ### Changed
 - `master` renamed to `main`.

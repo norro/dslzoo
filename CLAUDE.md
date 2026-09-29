@@ -29,6 +29,14 @@ URL needs to be called out explicitly, never silently.**
   gather the original survey data. Historical record, not meant to be
   extended or modernized as part of this reactivation.
 
+## Generator (private, separate repo)
+
+Generator recovery, reconstruction and its docs live in the private repo
+`norro/dslzoo-gen` (local: `~/dev/dslzoo-gen`; read its CLAUDE.md there).
+**Nothing from it - code, docs, history, file names, findings - goes into this
+public repo.** A revamped generator moves here only as a clean, reviewed
+import by Arne's explicit go-ahead, never by copying the private history.
+
 ## Contributors
 
 Past contributors (GitHub handles vs. real identities, several still in

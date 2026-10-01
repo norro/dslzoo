@@ -32,7 +32,7 @@ URL needs to be called out explicitly, never silently.**
 ## Generator (private, separate repo)
 
 Generator recovery, reconstruction and its docs live in the private repo
-`norro/dslzoo-gen` (local: `~/dev/dslzoo-gen`; read its CLAUDE.md there).
+`norro/dslzoo-gen` (read its CLAUDE.md there).
 **Nothing from it - code, docs, history, file names, findings - goes into this
 public repo.** A revamped generator moves here only as a clean, reviewed
 import by Arne's explicit go-ahead, never by copying the private history.

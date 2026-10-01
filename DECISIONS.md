@@ -1,6 +1,13 @@
 # Decisions
 
-## 2026-09-29 - Generator: reuse vs rebuild left open until the original has been searched for
+## 2026-10-01 - Lean, pragmatic scope; the old generator is only a template
+
+The restructuring plan is cut to a lean eight-step plan (docs/RESTRUCTURING-PLAN.md rev 3). The Zoo is not mission-critical, generation runs offline and is never time-critical, so: no byte-identical reproduction of the old pages (the generated artifacts are to be modernized), pragmatic instead of exhaustive testing, and no ceremony around hypothetical failure cases. The old generator is used only to understand the historical approach and goal; the new generator is written fresh, most likely in Python, in the private generator repository and imported cleanly. Fixed are only the cited names: the Pages URL with its page names, branch `query`, tag `joser16`, and no history rewrite.
+
+**Why:** the earlier plan (rev 2, 52 core steps, about 53 hours) protected against failures that matter little for this artifact and fixed byte-identity, which contradicts modernizing the output.
+**Alternatives considered:** keep rev 2 (rejected as over-engineered); drop all protection of the cited names (rejected: two publications point at them and the protection is cheap).
+
+## 2026-09-29 - Generator: reuse vs rebuild left open until the original has been searched for (superseded in part 2026-10-01)
 
 The 2026-09-28 decision to rebuild the site generator without searching further is suspended. The last six site regenerations (2019-09 to 2020-05) were made by a co-author, who also edited the templates, and the maintainer may still hold a copy in old personal archives; both are checked first. The plan (docs/RESTRUCTURING-PLAN.md) keeps two generator tracks, reuse and rebuild, that end at the same acceptance tests. Nothing else in the plan waits for this.
 

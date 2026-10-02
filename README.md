@@ -1,4 +1,4 @@
-Robotics DSL Zoo - v0.8.1
+Robotics DSL Zoo - v0.8.2
 =========================
 
 This is the repository that hosts the bib sources of the Robotics DSL Zoo. The

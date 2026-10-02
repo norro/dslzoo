@@ -1,5 +1,12 @@
 # Decisions
 
+## 2026-10-02 - Version 0.8.2 cut on the working branch without a git tag
+
+The backlog since 0.8.1 (bibliography fixes and cleanup, `.gitattributes`, plan, tags) was released as 0.8.2 (PATCH: fixes and tooling, no new capability) in CHANGELOG and README. No `v0.8.2` git tag was created or pushed.
+
+**Why:** the release commit sits on `ai/dslzoo-refresh`, whose reviewed pieces are cherry-picked into `main` with new hashes; a tag on the branch commit would point at a state that never lands on `main`. In this repo tags double as scientific references that are never moved (CLAUDE.md), so a tag that has to be deleted or re-created later is worse than no tag. Tag the version once it exists on `main`.
+**Alternatives considered:** tag now on the branch (the generic push ritual; rejected for the reason above); no version bump until the work lands on `main` (leaves the backlog uncut, which the generic ritual exists to prevent).
+
 ## 2026-10-02 - Bibliography cleaned in two separate commits; split goes on the roadmap, form open
 
 `dslzoo.bib` was cleaned up in two commits so each can be checked on its own. Commit one is whitespace only (blank lines, indent, `name = value`, trailing whitespace, LF, `, ` between vocabulary tokens); its check is strict: the file with all whitespace removed is identical before and after, and both parsers read identical entries. Commit two changes content only where it is mechanical: lower-case entry types and field names, a trailing comma after every entry's last field, and two vocabulary typos in `zoo-ap-subdomains` mapped to the names of the discipline pages on the pinned site (`legacy-2020-05-08-site`). The entry order was left alone.

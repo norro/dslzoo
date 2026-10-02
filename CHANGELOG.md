@@ -11,6 +11,8 @@ Versioning follows [semver](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.8.2] - 2026-10-02
+
 ### Added
 - `CLAUDE.md` documenting remote/branch conventions for future sessions.
 - `docs/RESTRUCTURING-PLAN.md`: draft lean restructuring plan (rev 3, eight

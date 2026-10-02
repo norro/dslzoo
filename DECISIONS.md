@@ -1,5 +1,14 @@
 # Decisions
 
+## 2026-10-02 - Cited state pinned with four fork tags and one bundle; no second copy
+
+Step 1 of the restructuring plan was executed on the fork. Four annotated tags pin the states the publications and the live site rest on: `legacy-2020-05-08-site` (1bc823f, last hand-generated site), `legacy-2020-05-08-bib` (3eba7a7, last bibliography state, 144 entries), `legacy-2015-12-22-query` (10d0659, tip of `query`) and `joser16-site` (fd34a51). Tag `joser16` stays as it is (annotated, points at ddb3c76, the 132-entry bibliography state). One git bundle of all corlab refs including the 19 pull-request heads (PR 12 exists only on GitHub) was made, restore-tested and kept outside the repository, with no second copy. The tags are on the fork only; the same tags on corlab wait for the maintainer's go-ahead.
+
+`joser16-site` is the last `gh-pages` commit before the tag `joser16` was created (13:52 CEST against 13:58 CEST on 2016-04-14; the next site commit followed at 14:11). The `joser16` commit itself is a bibliography state, not a site state, so the site state needed its own tag.
+
+**Why:** the generated site and the bibliography are about to be restructured; the cited states need names that cannot be mistaken and a way back that does not depend on one hosting service. No second copy: the maintainer judged the existing public copies sufficient (corlab itself, the Software Heritage snapshot of 2024-06-27, Wayback captures); the bundle adds the pull-request heads and a local pin.
+**Alternatives considered:** a second copy in a second cloud account, as a release asset on the fork or in a private GitLab project (the plan's original "two places"; not pursued); tagging corlab right away (held back, every write to corlab needs the maintainer's go-ahead).
+
 ## 2026-10-01 - Lean, pragmatic scope; the old generator is only a template
 
 The restructuring plan is cut to a lean eight-step plan (docs/RESTRUCTURING-PLAN.md rev 3). The Zoo is not mission-critical, generation runs offline and is never time-critical, so: no byte-identical reproduction of the old pages (the generated artifacts are to be modernized), pragmatic instead of exhaustive testing, and no ceremony around hypothetical failure cases. The old generator is used only to understand the historical approach and goal; the new generator is written fresh, most likely in Python, in the private generator repository and imported cleanly. Fixed are only the cited names: the Pages URL with its page names, branch `query`, tag `joser16`, and no history rewrite.

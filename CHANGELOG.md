@@ -17,6 +17,9 @@ Versioning follows [semver](https://semver.org/).
   steps) from a read-only investigation: fixed citation names, backup and
   tags, provenance docs, bibliography hygiene, a new Python generator, CI
   deploy via Pages.
+- Annotated tags on the fork pinning the cited states (step 1 of the plan):
+  `legacy-2020-05-08-site`, `legacy-2020-05-08-bib`, `legacy-2015-12-22-query`,
+  `joser16-site`. corlab is untouched; `joser16` is unchanged.
 
 ### Changed
 - `master` renamed to `main`.

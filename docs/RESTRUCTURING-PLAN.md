@@ -1,6 +1,6 @@
 # Restructuring plan - Robotics DSL Zoo
 
-Status: DRAFT rev 3 (lean), 2026-10-01. Nothing in this plan has been executed. It replaces the much larger rev 2, which was judged over-engineered for this artifact. This document lives only on the fork branch `ai/dslzoo-refresh` and is not meant to be landed on `main` or on corlab.
+Status: DRAFT rev 3 (lean), 2026-10-01. Step 1 has been executed on the fork (2026-10-02, see section 8); nothing else in this plan has been executed. It replaces the much larger rev 2, which was judged over-engineered for this artifact. This document lives only on the fork branch `ai/dslzoo-refresh` and is not meant to be landed on `main` or on corlab.
 
 Audience: maintainers and co-authors of the Robotics DSL Zoo, and future contributors.
 
@@ -55,7 +55,7 @@ Statements in the project notes that need correcting (after the maintainer confi
 
 | # | Step | Who and where | Effort (rough) |
 |---|---|---|---|
-| 1 | Backup and pins: a git bundle of all corlab refs including pull-request heads (the head of PR 12 exists only on GitHub), kept in two places; annotated tags on the fork for the key states: `legacy-2020-05-08-site` (1bc823f, last hand-generated site), `legacy-2020-05-08-bib` (3eba7a7, last bibliography state), `legacy-2015-12-22-query` (10d0659, tip of `query`), `joser16-site` (fd34a51, site state matching `joser16`); later the same tags on corlab. `joser16` is never moved. | Claude and maintainer, fork first, then corlab with go-ahead | 1 h |
+| 1 | Backup and pins: a git bundle of all corlab refs including pull-request heads (the head of PR 12 exists only on GitHub), kept in one place outside the repository (the maintainer decided against a second copy); annotated tags on the fork for the key states: `legacy-2020-05-08-site` (1bc823f, last hand-generated site), `legacy-2020-05-08-bib` (3eba7a7, last bibliography state), `legacy-2015-12-22-query` (10d0659, tip of `query`), `joser16-site` (fd34a51, site state matching `joser16`); later the same tags on corlab. `joser16` is never moved. **Status 2026-10-02:** bundle (19 pull-request heads included, restore-tested) and the four fork tags are done; the tags on corlab are still open and wait for the go-ahead. | Claude and maintainer, fork first, then corlab with go-ahead | 1 h |
 | 2 | Optional guard on corlab: one repository ruleset that blocks deletion and force-push for `query`, `gh-pages`, `joser16*` and `legacy-*`, with no bypass list; any admin can switch it off. Try it on a throwaway repository first. | Maintainer-approved, corlab | 0.5 h |
 | 3 | Documentation: `docs/PROVENANCE.md` (URL generations, `query` = JOSER search, SIMPAR manual, tags, what is and is not preserved) and the corrections of section 2. | Claude drafts, maintainer confirms governance files | 2 h |
 | 4 | Bibliography hygiene as its own small commit: the four syntax fixes, `.gitattributes` for line endings, check that two parsers agree on all entries. | Claude, fork | 1 h |
@@ -95,3 +95,4 @@ Not part of the plan unless wanted later: byte-identical reproduction, three leg
 - Rev 1, 2026-09-29: first draft after the investigation.
 - Rev 2, 2026-09-29: design round and a seven-lens review; 52 core steps, byte-identical cutover, rulesets, notice waves. Judged over-engineered.
 - Rev 3, 2026-10-01: lean plan of 8 steps. Dropped: byte-identical reproduction, the drill, soak and notice machinery, legacy views, the rights and DOI track, the extensive test tiers. Rev 2 remains visible in the history of this branch.
+- Progress, 2026-10-02: step 1 executed on the fork. A bundle of all corlab refs (`gh-pages`, `master`, `query`, `joser16`, 19 pull-request heads including PR 12) was made from a mirror clone, restored into an empty repository and checked (`git fsck`, all ref SHAs identical). Annotated tags `legacy-2020-05-08-site`, `legacy-2020-05-08-bib`, `legacy-2015-12-22-query` and `joser16-site` were pushed to the fork; corlab was not touched. No second copy of the bundle, by decision of the maintainer.

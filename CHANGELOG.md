@@ -20,6 +20,16 @@ Versioning follows [semver](https://semver.org/).
 - Annotated tags on the fork pinning the cited states (step 1 of the plan):
   `legacy-2020-05-08-site`, `legacy-2020-05-08-bib`, `legacy-2015-12-22-query`,
   `joser16-site`. corlab is untouched; `joser16` is unchanged.
+- `.gitattributes` (`* text=auto eol=lf`) to keep line endings consistent; the
+  index was already LF, so no blob changes.
+
+### Fixed
+- `dslzoo.bib`, four syntax defects (step 4 of the plan): missing comma after
+  `year` in `Araiza-Illan2016` and after `url` in `Ciccozzi2016Adopting`;
+  duplicate `booktitle` in `hochgeschwender2014declarative` (identical value,
+  second copy removed); duplicate `keywords` in `Detzner2019Novel` (merged into
+  one field). Before: pybtex aborted on the file, bibtexparser silently read
+  142 of 144 entries. After: both read all 144 and agree on every field.
 
 ### Changed
 - `master` renamed to `main`.

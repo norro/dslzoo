@@ -30,8 +30,20 @@ Versioning follows [semver](https://semver.org/).
   second copy removed); duplicate `keywords` in `Detzner2019Novel` (merged into
   one field). Before: pybtex aborted on the file, bibtexparser silently read
   142 of 144 entries. After: both read all 144 and agree on every field.
+- `dslzoo.bib`, vocabulary: `zoo-ap-subdomains` tokens "Error and Exeption
+  Handling" (8 entries) and "Control of Handling and Events" (1 entry) now use
+  the canonical names "Error and Exception Handling and Fault Tolerance" and
+  "Control and Handling of Events". The old site silently left these 9 entries
+  off those pages.
 
 ### Changed
+- `dslzoo.bib` normalised: one blank line between entries, 2-space indent,
+  `name = value` spacing, no trailing whitespace, LF, `, ` between vocabulary
+  tokens; entry types and field names lower-case; every entry ends its last
+  field with a comma. No content change beyond the vocabulary fix above
+  (verified with two parsers). The whitespace-only part is its own commit, so
+  `git blame --ignore-rev` can skip it.
+- Splitting `dslzoo.bib` is on the roadmap as step 5a of the plan.
 - `master` renamed to `main`.
 - Restructuring plan approved: consolidate bib source, generator, and docs
   into `main`; stop committing generated HTML; build and deploy to

@@ -60,6 +60,7 @@ Statements in the project notes that need correcting (after the maintainer confi
 | 3 | Documentation: `docs/PROVENANCE.md` (URL generations, `query` = JOSER search, SIMPAR manual, tags, what is and is not preserved) and the corrections of section 2. | Claude drafts, maintainer confirms governance files | 2 h |
 | 4 | Bibliography hygiene as its own small commit: the four syntax fixes, `.gitattributes` for line endings, check that two parsers agree on all entries. **Status 2026-10-02:** done on the fork (pybtex and bibtexparser 1.x agree on all 144 entries; duplicate `keywords` merged, see DECISIONS.md); not yet on corlab. The vocabulary typos and the 25 entries without a phase are not part of this step; they belong to the lint in step 6. | Claude, fork | 1 h |
 | 5 | New generator in Python (uv, a BibTeX parser plus a guard that the entry count equals the parsed count, Jinja2). Modernized output; page names and `#key` anchors of the cited pages stay; the six 2015 leftover pages are copied as they are. The old generator is read only for approach and goals. Built in the private generator repository, then imported cleanly. | Claude with maintainer review, private repo then public import with go-ahead | 5 to 8 h |
+| 5a | Split `dslzoo.bib` (maintainer wish 2026-10-02: the single file is unwieldy). Decided together with step 5, because the new generator defines what it reads. Preferred option: one file per entry in `bib/` (file name = key), which keeps pull requests conflict-free and the diffs small. A split by year is not recommended (31 distinct years, uneven: 21 entries in 2012, 2 in the 1980s together). Fixed constraint: `dslzoo.bib` stays at the repository root as the aggregate, generated from `bib/` and checked for sync in CI. | Maintainer decides the form, Claude implements | 2 to 3 h |
 | 6 | Pragmatic tests and lint in CI: parse, entry count, all expected pages generated, internal links resolve, simple checks for required fields and exact vocabulary tokens, markup characters in entries rejected. | Claude | 1 to 2 h |
 | 7 | CI deploy: one GitHub Actions workflow builds the site and publishes it with Pages (Pages source set to GitHub Actions); the `gh-pages` branch stays untouched as the way back (switching the Pages source back restores the old site). Trial on the fork first, then corlab with go-ahead; set the default workflow token to read-only. | Claude, then maintainer flips the setting | 1 to 2 h |
 | 8 | Contributor path: README and CONTRIBUTING updated, PR template. | Claude | 1 h |
@@ -74,6 +75,7 @@ Not part of the plan unless wanted later: byte-identical reproduction, three leg
 2. Pages via Actions with `gh-pages` kept as fallback (step 7), or CI pushing to `gh-pages`. Recommended: Actions.
 3. Which old URLs must stay exactly: all 41 page names (recommended, cheap) or only the root and a few key pages.
 4. Later, not now: license and citation file (CITATION.cff), which need the co-authors.
+5. Form of the bibliography split (step 5a): one file per entry in `bib/` (recommended), a single sorted and uniformly formatted file, or a split by subdomain. Decide before step 5 starts.
 
 ## 6. Risks and open items
 
@@ -82,6 +84,7 @@ Not part of the plan unless wanted later: byte-identical reproduction, three leg
 - Markup characters inside entries would render raw: rejected by the lint.
 - Unverified: the URL printed in the SIMPAR chapter; whether the old charts render in current browsers; organization-level policy beyond the repository settings.
 - Rights (license, contributor consent, one image of unknown provenance) are unresolved and deliberately left out.
+- Content gaps in `dslzoo.bib` that need the maintainer, not a mechanical fix (left as they are): 25 entries without `zoo-phases` (the old site silently left them off the phase pages); 6 entries with an empty `zoo-subdomains` and 1 without the field; 6 entries with lowercase subdomain tokens (`components`, `transformation`, `perception`, `robot-structure`, `manipulation-and-grasping`), of which only `components` has a page on the old site; free-text `zoo-formalism` values such as `CFG?`. Step 6 turns these into lint findings.
 
 ## 7. Sources
 
@@ -97,3 +100,4 @@ Not part of the plan unless wanted later: byte-identical reproduction, three leg
 - Rev 3, 2026-10-01: lean plan of 8 steps. Dropped: byte-identical reproduction, the drill, soak and notice machinery, legacy views, the rights and DOI track, the extensive test tiers. Rev 2 remains visible in the history of this branch.
 - Progress, 2026-10-02: step 1 executed on the fork. A bundle of all corlab refs (`gh-pages`, `master`, `query`, `joser16`, 19 pull-request heads including PR 12) was made from a mirror clone, restored into an empty repository and checked (`git fsck`, all ref SHAs identical). Annotated tags `legacy-2020-05-08-site`, `legacy-2020-05-08-bib`, `legacy-2015-12-22-query` and `joser16-site` were pushed to the fork; corlab was not touched. No second copy of the bundle, by decision of the maintainer.
 - Progress, 2026-10-02: step 4 executed on the fork. Four syntax defects in `dslzoo.bib` fixed, `.gitattributes` added; pybtex and bibtexparser 1.x now both read 144 of 144 entries and agree on every field (before: pybtex aborted, bibtexparser read 142). Details in DECISIONS.md.
+- Progress, 2026-10-02 (later): `dslzoo.bib` cleaned up on the fork in two verified commits (whitespace only; then vocabulary typos, field-name case, trailing commas). The split of the bibliography is on the roadmap as step 5a.

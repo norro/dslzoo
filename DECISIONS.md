@@ -1,5 +1,16 @@
 # Decisions
 
+## 2026-10-02 - Bibliography cleaned in two separate commits; split goes on the roadmap, form open
+
+`dslzoo.bib` was cleaned up in two commits so each can be checked on its own. Commit one is whitespace only (blank lines, indent, `name = value`, trailing whitespace, LF, `, ` between vocabulary tokens); its check is strict: the file with all whitespace removed is identical before and after, and both parsers read identical entries. Commit two changes content only where it is mechanical: lower-case entry types and field names, a trailing comma after every entry's last field, and two vocabulary typos in `zoo-ap-subdomains` mapped to the names of the discipline pages on the pinned site (`legacy-2020-05-08-site`). The entry order was left alone.
+
+Deliberately not changed, because it needs the maintainer: the 25 entries without `zoo-phases`, the empty or missing `zoo-subdomains`, the lowercase subdomain tokens, the free-text `zoo-formalism` values (listed in the plan, section 6). Not done either: sorting entries or reordering fields.
+
+The maintainer wants the single file split because it is unwieldy; this is on the plan as step 5a. Preferred form: one file per entry in `bib/`, with `dslzoo.bib` kept at the root as a generated aggregate. Split by year is not recommended.
+
+**Why:** a whitespace reformat mixed with content edits cannot be verified and ruins `git blame`; separate commits let a mechanical check carry the first one. The 9 re-tokenised entries will now appear on their discipline pages after regeneration, which is the intended behaviour the old site missed. The split waits for step 5 because the new generator decides what it reads, and `dslzoo.bib` at the root is a fixed constraint (linked from contribute.html).
+**Alternatives considered:** one combined cleanup commit (unverifiable); sorting entries by key now (a huge diff for no gain if the split follows); mapping the lowercase subdomain tokens or filling the missing phases (guessing at the maintainer's classification); a split by year (uneven: 21 entries in 2012, 2 in the 1980s together, 31 distinct years).
+
 ## 2026-10-02 - Bibliography syntax fixed; duplicate keywords merged, not dropped
 
 Step 4 of the restructuring plan: the four syntax defects in `dslzoo.bib` were fixed in a commit of their own (so it can be cherry-picked on its own); `.gitattributes` (`* text=auto eol=lf`) follows with the docs. Two missing commas were added (`Araiza-Illan2016`, `Ciccozzi2016Adopting`). In `hochgeschwender2014declarative` the second `booktitle` was removed; it was identical to the first. In `Detzner2019Novel` the two `keywords` fields (the publisher's semicolon list and the zoo's `dsl-zoo` list) were merged into one comma-separated field: `dsl-zoo` first, then the publisher's keywords, case-insensitive duplicates dropped (the zoo's own four extra keywords were already in the publisher list). Verification: pybtex and bibtexparser 1.x both read 144 of 144 entries and agree on every field (names compared as parsed persons, month macros normalized). Before the fix pybtex aborted with a duplicate-field error and bibtexparser silently read only 142 entries (the two it lost are exactly the two with a missing comma).

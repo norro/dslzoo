@@ -1,6 +1,13 @@
 # Decisions
 
-## 2026-10-02 - Version 0.8.2 cut on the working branch without a git tag
+## 2026-10-02 - Version 0.8.2 tagged on the fork's working branch
+
+`v0.8.2` is an annotated tag on `norro/dslzoo`, on the commit that records this decision. The maintainer asked for it after the consequence was stated: the tag names a branch commit, not the hash the version will have once its pieces are cherry-picked into `main`. Consequence for later: tags are never moved or re-created, so when the version reaches `main` it gets the next free number (or another tag name), not a second `v0.8.2`. The tag is on the fork only; corlab is untouched.
+
+**Why:** the maintainer wants the released state addressable on the fork now. A new version tag is a new name; it does not touch the never-move rule for `joser16*` and `legacy-*`.
+**Alternatives considered:** wait with the tag until the version exists on `main` (the decision below, now superseded).
+
+## 2026-10-02 - Version 0.8.2 cut on the working branch without a git tag (superseded by the entry above)
 
 The backlog since 0.8.1 (bibliography fixes and cleanup, `.gitattributes`, plan, tags) was released as 0.8.2 (PATCH: fixes and tooling, no new capability) in CHANGELOG and README. No `v0.8.2` git tag was created or pushed.
 

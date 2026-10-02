@@ -29,6 +29,15 @@ URL needs to be called out explicitly, never silently.**
   gather the original survey data. Historical record, not meant to be
   extended or modernized as part of this reactivation.
 
+## Tags - scientific reference, never move
+
+`joser16*` and `legacy-*` pin the states the publications and the live site
+rest on (list and rationale: DECISIONS.md, 2026-10-02). **Never move, delete or
+re-create them; a new state gets a new tag.** Why: a published citation must
+resolve to exactly the cited state years later - a moved tag silently changes
+what the citation refers to, and readers cannot detect it. Tags exist on
+`origin`; the same tags on `corlab` only with explicit go-ahead.
+
 ## Generator (private, separate repo)
 
 Generator recovery, reconstruction and its docs live in the private repo

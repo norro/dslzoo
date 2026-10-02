@@ -11,6 +11,12 @@ Versioning follows [semver](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Never-move rule for the citation tags scoped to `corlab` (CLAUDE.md,
+  DECISIONS.md). The three `legacy-*` tags were re-created on the fork with
+  the same targets and a message without the fork-only plan pointer, ahead of
+  their push to `corlab`.
+
 ## [0.8.2] - 2026-10-02
 
 ### Added

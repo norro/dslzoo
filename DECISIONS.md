@@ -1,5 +1,12 @@
 # Decisions
 
+## 2026-10-02 - Never-move rule for citation tags binds on corlab only; three fork tags re-created before they go there
+
+The never-move rule for `joser16*` and `legacy-*` (entry of 2026-10-02 below, CLAUDE.md) is scoped: it is strict on `corlab`, the only target of scientific references, and binds for a tag from the moment it is on `corlab`. Until then a tag on the fork may be fixed. Applied right away: `legacy-2020-05-08-site`, `legacy-2020-05-08-bib` and `legacy-2015-12-22-query` are re-created on the fork with the same targets but without the "see docs/RESTRUCTURING-PLAN.md" pointer in their messages, because that file exists only on the fork branch and would dangle on `corlab`. `joser16-site` has no such pointer and stays. The plan for `corlab` (go-ahead pending): push these four tags by explicit refspec; they add only tag objects, since all four targets are already heads or ancestors on `corlab` (gh-pages, master, query). `v0.8.2` stays on the fork: its commit is on `ai/dslzoo-refresh` and would drag fork-only history, including this file and the plan, into `corlab`.
+
+**Why:** re-creating the fork tags now gives `corlab` and the fork the identical tag object under each name, which is cheap to verify later; re-creating after the `corlab` push would be the silent change the rule exists to prevent. The fork tags are hours old and cited nowhere, so nothing depends on their old object ids.
+**Alternatives considered:** push the tags with the dangling pointer and explain it in PROVENANCE.md (the assistant's first proposal; rejected by the maintainer, who scoped the rule instead); apply the rule to both remotes from day one (over-strict for a fork that is a working copy).
+
 ## 2026-10-02 - Version 0.8.2 tagged on the fork's working branch
 
 `v0.8.2` is an annotated tag on `norro/dslzoo`, on the commit that records this decision. The maintainer asked for it after the consequence was stated: the tag names a branch commit, not the hash the version will have once its pieces are cherry-picked into `main`. Consequence for later: tags are never moved or re-created, so when the version reaches `main` it gets the next free number (or another tag name), not a second `v0.8.2`. The tag is on the fork only; corlab is untouched.

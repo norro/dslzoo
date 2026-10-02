@@ -32,11 +32,17 @@ URL needs to be called out explicitly, never silently.**
 ## Tags - scientific reference, never move
 
 `joser16*` and `legacy-*` pin the states the publications and the live site
-rest on (list and rationale: DECISIONS.md, 2026-10-02). **Never move, delete or
-re-create them; a new state gets a new tag.** Why: a published citation must
+rest on (list and rationale: DECISIONS.md, 2026-10-02). **On `corlab`, never
+move, delete or re-create them; a new state gets a new tag.** Why: `corlab` is
+the only target of scientific references, and a published citation must
 resolve to exactly the cited state years later - a moved tag silently changes
-what the citation refers to, and readers cannot detect it. Tags exist on
-`origin`; the same tags on `corlab` only with explicit go-ahead.
+what the citation refers to, and readers cannot detect it. The rule binds only
+once a tag is on `corlab`; before that, a tag on `origin` may still be fixed
+(re-created), after which the identical object goes to `corlab`. Pushing to
+`corlab` only with explicit go-ahead, always by explicit refspec per tag,
+never `--tags` or `--follow-tags`. Version tags (`vX.Y.Z`) go to `corlab` only
+when their commit is on a `corlab` branch, never pointing into fork-only
+history.
 
 ## Generator (private, separate repo)
 

@@ -31,6 +31,12 @@ Versioning follows [semver](https://semver.org/).
   DECISIONS.md). The three `legacy-*` tags were re-created on the fork with
   the same targets and a message without the fork-only plan pointer, ahead of
   their push to `corlab`.
+- Plan step 5 changed to plan A: the new generator is written directly in this
+  repository from public sources instead of in a private repository first;
+  the peculiarities of the old site are not requirements of the generator
+  (DECISIONS.md).
+- SIMPAR 2014 verified to print only the former address
+  `http://cor-lab.org/robotics-dsl-zoo` (dead); plan statements corrected.
 
 ## [0.8.2] - 2026-10-02
 

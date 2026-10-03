@@ -1,6 +1,6 @@
 # Restructuring plan - Robotics DSL Zoo
 
-Status: DRAFT rev 3 (lean), 2026-10-01. Step 1 is complete including corlab and step 2 (rulesets) is in place on corlab (both 2026-10-03), the Actions deploy of step 7 has been tried on the fork (2026-10-03), step 4 has been executed on the fork (2026-10-02, see section 8); nothing else in this plan has been executed. It replaces the much larger rev 2, which was judged over-engineered for this artifact. This document lives only on the fork branch `ai/dslzoo-refresh` and is not meant to be landed on `main` or on corlab.
+Status: DRAFT rev 3 (lean), 2026-10-01. Step 1 is complete including corlab and step 2 (rulesets) is in place on corlab (both 2026-10-03), the Actions deploy of step 7 has been tried on the fork (2026-10-03), step 4 has been executed on the fork (2026-10-02, see section 8), and step 5 is being built directly in this repository (plan A, 2026-10-03, see DECISIONS.md); nothing else in this plan has been executed. It replaces the much larger rev 2, which was judged over-engineered for this artifact. This document lives only on the fork branch `ai/dslzoo-refresh` and is not meant to be landed on `main` or on corlab.
 
 Audience: maintainers and co-authors of the Robotics DSL Zoo, and future contributors.
 
@@ -20,7 +20,7 @@ The few fixed constraints, because two publications point at them:
 | Page names and `#key` anchors of the generated pages | Linked inside the site and in the wild | Keep the names; a removed page gets a redirect stub |
 | `dslzoo.bib` at the repository root | Linked from contribute.html, raw use unknown | Stays at that path |
 
-History is never rewritten. The SIMPAR 2014 survey process was manual (no script); `query` is the JOSER 2016 candidate search. The URL printed in the SIMPAR chapter itself is unverified.
+History is never rewritten. The SIMPAR 2014 survey process was manual (no script); `query` is the JOSER 2016 candidate search. The SIMPAR 2014 chapter prints only the former address http://cor-lab.org/robotics-dsl-zoo (footnotes 6 and 8; verified 2026-10-03 against the authors' copy, which the maintainer states is content-identical to the published chapter). That address no longer serves the Zoo, so SIMPAR has no working fixed citation URL.
 
 ## 2. What the investigation found (short)
 
@@ -35,7 +35,7 @@ Statements in the project notes that need correcting (after the maintainer confi
 
 | Statement | Correction |
 |---|---|
-| Both publications cite corlab.github.io/dslzoo | JOSER 2016 cites it and the `query` branch URL; the SIMPAR 2014 URL is unverified |
+| Both publications cite corlab.github.io/dslzoo | JOSER 2016 cites it and the `query` branch URL; SIMPAR 2014 cites only the former address cor-lab.org/robotics-dsl-zoo, which is dead |
 | `query` documents the data acquisition of "the original survey" | `query` is the JOSER 2016 candidate search; SIMPAR 2014 was manual |
 | The generator is lost | It is in no public repository; recovery is handled in a private repository and the original is only a template for the new one |
 | CHANGELOG 0.5.0: PR 17 was the first change after about 2.5 years | PR 9 landed on 2018-11-06 |
@@ -48,7 +48,7 @@ Statements in the project notes that need correcting (after the maintainer confi
 2. Keep the cited names, never rewrite history, keep a way back (the old `gh-pages` branch stays as it is).
 3. Try on the fork first (its Pages site is live and configured like corlab), then corlab.
 4. Every write to corlab needs the maintainer's explicit go-ahead; the assistant never edits git config and never posts messages for the maintainer.
-5. Generator work happens in the private generator repository described in CLAUDE.md; code reaches this public repository only as a clean, reviewed import after the maintainer's go-ahead.
+5. The new generator is written from scratch directly in this repository (plan A, 2026-10-03), from public sources only (`dslzoo.bib` and the HTML of branch `gh-pages`); nothing from the private generator repository described in CLAUDE.md is read or used.
 6. Public documents carry no secrets, e-mail addresses, local paths or names of individuals attached to roles.
 
 ## 4. Plan
@@ -59,7 +59,7 @@ Statements in the project notes that need correcting (after the maintainer confi
 | 2 | Optional guard on corlab: one repository ruleset that blocks deletion and force-push for `query`, `gh-pages`, `joser16*` and `legacy-*`, with no bypass list; any admin can switch it off. Try it on a throwaway repository first. **Status 2026-10-03: done on corlab** (branches `query` and `gh-pages`, tags `joser16*` and `legacy-*`); the throwaway trial was skipped because private repositories have no rulesets without GitHub Pro. | Maintainer-approved, corlab | 0.5 h |
 | 3 | Documentation: `docs/PROVENANCE.md` (URL generations, `query` = JOSER search, SIMPAR manual, tags, what is and is not preserved) and the corrections of section 2. | Claude drafts, maintainer confirms governance files | 2 h |
 | 4 | Bibliography hygiene as its own small commit: the four syntax fixes, `.gitattributes` for line endings, check that two parsers agree on all entries. **Status 2026-10-02:** done on the fork (pybtex and bibtexparser 1.x agree on all 144 entries; duplicate `keywords` merged, see DECISIONS.md); not yet on corlab. The vocabulary typos and the 25 entries without a phase are not part of this step; they belong to the lint in step 6. | Claude, fork | 1 h |
-| 5 | New generator in Python (uv, a BibTeX parser plus a guard that the entry count equals the parsed count, Jinja2). Modernized output; page names and `#key` anchors of the cited pages stay; the six 2015 leftover pages are copied as they are. The old generator is read only for approach and goals. Built in the private generator repository, then imported cleanly. | Claude with maintainer review, private repo then public import with go-ahead | 5 to 8 h |
+| 5 | New generator in Python (uv, a BibTeX parser plus a guard that the entry count equals the parsed count, Jinja2). Modernized output; page names and `#key` anchors of the cited pages stay; the six 2015 leftover pages are copied as they are. The old generator is read only for approach and goals. Written directly in this repository (plan A, 2026-10-03). The structure comes from the controlled vocabulary and the peculiarities of the old site are not requirements (DECISIONS.md). Every page carries a note with the fixed citation addresses that links a page on the cited versions. **Status 2026-10-03:** in progress. | Claude with maintainer review | 5 to 8 h |
 | 5a | Split `dslzoo.bib` (maintainer wish 2026-10-02: the single file is unwieldy). Decided together with step 5, because the new generator defines what it reads. Preferred option: one file per entry in `bib/` (file name = key), which keeps pull requests conflict-free and the diffs small. A split by year is not recommended (31 distinct years, uneven: 21 entries in 2012, 2 in the 1980s together). Fixed constraint: `dslzoo.bib` stays at the repository root as the aggregate, generated from `bib/` and checked for sync in CI. | Maintainer decides the form, Claude implements | 2 to 3 h |
 | 6 | Pragmatic tests and lint in CI: parse, entry count, all expected pages generated, internal links resolve, simple checks for required fields and exact vocabulary tokens, markup characters in entries rejected. | Claude | 1 to 2 h |
 | 7 | CI deploy: one GitHub Actions workflow builds the site and publishes it with Pages (Pages source set to GitHub Actions); the `gh-pages` branch stays untouched as the way back (switching the Pages source back restores the old site). Trial on the fork first, then corlab with go-ahead; set the default workflow token to read-only. **Status 2026-10-03:** trial done on the fork with a test workflow that publishes the unchanged `gh-pages` content; byte-identical, proved served by Actions via a marker file, rollback verified (source back to `gh-pages` plus a manual legacy build); fork is back on the legacy source; nothing on corlab yet. | Claude, then maintainer flips the setting | 1 to 2 h |
@@ -82,7 +82,7 @@ Not part of the plan unless wanted later: byte-identical reproduction, three leg
 - Pages semantics when switching the source (a short gap, extensionless URLs, custom 404) are measured on the fork before corlab. The way back is a settings change.
 - Silent BibTeX parser failures: covered by the entry-count guard and the syntax fixes.
 - Markup characters inside entries would render raw: rejected by the lint.
-- Unverified: the URL printed in the SIMPAR chapter; whether the old charts render in current browsers; organization-level policy beyond the repository settings.
+- Unverified: whether the old charts render in current browsers; organization-level policy beyond the repository settings.
 - Rights (license, contributor consent, one image of unknown provenance) are unresolved and deliberately left out.
 - Content gaps in `dslzoo.bib` that need the maintainer, not a mechanical fix (left as they are): 25 entries without `zoo-phases` (the old site silently left them off the phase pages); 6 entries with an empty `zoo-subdomains` and 1 without the field; 6 entries with lowercase subdomain tokens (`components`, `transformation`, `perception`, `robot-structure`, `manipulation-and-grasping`), of which only `components` has a page on the old site; free-text `zoo-formalism` values such as `CFG?`. Step 6 turns these into lint findings.
 
@@ -103,3 +103,4 @@ Not part of the plan unless wanted later: byte-identical reproduction, three leg
 - Progress, 2026-10-02 (later): `dslzoo.bib` cleaned up on the fork in two verified commits (whitespace only; then vocabulary typos, field-name case, trailing commas). The split of the bibliography is on the roadmap as step 5a.
 - Progress, 2026-10-03: step 1 completed on corlab. The three `legacy-*` tags were first re-created on the fork with messages that do not point at this fork-only document (the never-move rule binds on corlab only, see DECISIONS.md), then `joser16-site`, `legacy-2015-12-22-query`, `legacy-2020-05-08-bib` and `legacy-2020-05-08-site` were pushed to corlab by explicit refspec. Verified afterwards: identical tag objects on origin and corlab, corlab branch heads unchanged, `v0.8.2` not on corlab. Only tag objects were added; all four targets were already heads or ancestors on corlab.
 - Progress, 2026-10-03 (later): step 2 applied on corlab (two rulesets, no bypass list, read back only). Step 7 trialled on the fork: Actions deploy identical to the legacy site, marker file proves it is served by Actions, rollback needs the Pages source switched back and a manual legacy build. Details in DECISIONS.md.
+- Progress, 2026-10-03 (later): plan A chosen for step 5. The generator is written directly in this repository from public sources, replacing the private-first route; the page names stay (decision 3), deployment via Actions (decision 2), the six 2015 pages stay as static pages in the new layout, the split of the bibliography (decision 5) is postponed and the generator reads the single file through an isolated loader. The address printed in the SIMPAR chapter is verified as a dead former address (section 1). Details in DECISIONS.md.

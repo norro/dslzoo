@@ -1,0 +1,43 @@
+# TEST workflow (fork only): publishes the unchanged content of branch gh-pages
+# through GitHub Actions, to measure Pages semantics before the real generator
+# exists. Replace the checkout step with the generator build once it lands.
+name: Deploy site
+
+on:
+  push:
+    branches: [ai/dslzoo-refresh]
+    paths: [.github/workflows/pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: site
+      - run: rm -rf site/.git
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

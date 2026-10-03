@@ -25,6 +25,7 @@ jobs:
           ref: gh-pages
           path: site
       - run: rm -rf site/.git
+      - run: echo "actions-deploy run=${{ github.run_id }} sha=${{ github.sha }}" > site/deploy-check.txt
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

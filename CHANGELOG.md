@@ -11,6 +11,12 @@ Versioning follows [semver](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Citation tags `joser16-site`, `legacy-2015-12-22-query`,
+  `legacy-2020-05-08-bib` and `legacy-2020-05-08-site` pushed to `corlab`
+  (step 1 of the plan complete). Identical tag objects on both remotes; no
+  branch on `corlab` changed. `v0.8.2` stays on the fork.
+
 ### Changed
 - Never-move rule for the citation tags scoped to `corlab` (CLAUDE.md,
   DECISIONS.md). The three `legacy-*` tags were re-created on the fork with

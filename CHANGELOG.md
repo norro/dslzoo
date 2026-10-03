@@ -16,6 +16,15 @@ Versioning follows [semver](https://semver.org/).
   `legacy-2020-05-08-bib` and `legacy-2020-05-08-site` pushed to `corlab`
   (step 1 of the plan complete). Identical tag objects on both remotes; no
   branch on `corlab` changed. `v0.8.2` stays on the fork.
+- Two repository rulesets on `corlab` (step 2 of the plan, no bypass list):
+  `protect-cited-branches` blocks deletion and force-push for `query` and
+  `gh-pages`; `protect-cited-tags` blocks deletion, force-push and update for
+  `joser16*` and `legacy-*`. Read back via the API; enforcement not probed
+  destructively.
+- `.github/workflows/pages.yml` on the fork: test workflow that publishes the
+  unchanged `gh-pages` content through GitHub Actions (step 7 trial). Verified
+  on `norro.github.io/dslzoo`, then rolled back to the `gh-pages` source; see
+  DECISIONS.md.
 
 ### Changed
 - Never-move rule for the citation tags scoped to `corlab` (CLAUDE.md,

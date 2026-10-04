@@ -102,6 +102,8 @@ Versioning follows [semver](https://semver.org/).
   (verified with two parsers). The whitespace-only part is its own commit, so
   `git blame --ignore-rev` can skip it.
 - Splitting `dslzoo.bib` is on the roadmap as step 5a of the plan.
+- Machine-readable and LLM access (semantic web layer, `llms.txt`, possibly an
+  MCP server) is on the roadmap as step 9 of the plan; not started.
 - `master` renamed to `main`.
 - Restructuring plan approved: consolidate bib source, generator, and docs
   into `main`; stop committing generated HTML; build and deploy to

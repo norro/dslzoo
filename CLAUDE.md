@@ -14,11 +14,20 @@ no such rigor needed there. Detail: DECISIONS.md, 2026-10-04.
 ## Remotes - do not conflate
 
 - `origin` = `norro/dslzoo` (Arne's personal GitHub account) - **the only
-  remote to push to by default.**
+  configured git remote, and the only one to push to by default.**
 - `corlab` = `corlab/dslzoo` (upstream org repo, the one the publications
-  actually cite; Arne has admin there). **Never push here without an
-  explicit go-ahead** - timing needs coordination with the other
-  contributors first (see below). Fetch/compare freely.
+  actually cite; Arne has admin there). **Not a configured remote in this
+  clone, for now**: it is addressed by its explicit URL
+  `https://github.com/corlab/dslzoo.git`. Do not add a `corlab` remote
+  without Arne's say-so (DECISIONS.md, 2026-10-04).
+  - **Push** only with an explicit go-ahead - timing needs coordination with
+    the other contributors first (see below) - always as
+    `git push https://github.com/corlab/dslzoo.git <sha-or-ref>:refs/heads/<branch>`
+    (corlab's default branch is `master`) or the per-tag form under Tags.
+    Never `--all`, `--mirror`, `--tags` or `--follow-tags`.
+  - **Fetch/compare** freely, read-only, by URL: `git ls-remote <url>` or
+    `git fetch <url> <refspec>` (writes only FETCH_HEAD). `git fetch corlab`
+    and `git push corlab` fail here by design.
 
 ## Branches
 
@@ -44,8 +53,8 @@ resolve to exactly the cited state years later - a moved tag silently changes
 what the citation refers to, and readers cannot detect it. The rule binds only
 once a tag is on `corlab`; before that, a tag on `origin` may still be fixed
 (re-created), after which the identical object goes to `corlab`. Pushing to
-`corlab` only with explicit go-ahead, always by explicit refspec per tag,
-never `--tags` or `--follow-tags`. Version tags (`vX.Y.Z`) go to `corlab` only
+`corlab` only with explicit go-ahead, always by URL (see Remotes) with an
+explicit refspec per tag, never `--tags` or `--follow-tags`. Version tags (`vX.Y.Z`) go to `corlab` only
 when their commit is on a `corlab` branch, never pointing into fork-only
 history.
 

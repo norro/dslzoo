@@ -1,5 +1,12 @@
 # Decisions
 
+## 2026-10-04 - corlab is addressed by its explicit URL, not as a configured remote (for now)
+
+Pushes to `corlab` go by the explicit URL `https://github.com/corlab/dslzoo.git` with an explicit refspec (`git push <url> <sha>:refs/heads/master`, or one refspec per tag); read-only comparison goes by the same URL (`git ls-remote`, `git fetch <url> <refspec>`). No `corlab` remote is added to the clone until the maintainer decides otherwise. This is how every push to `corlab` so far was made (the four tags on 2026-10-03, the `master` fast-forward on 2026-10-04); the clone of 2026-09-29 was made from `origin` and never had a `corlab` remote (reflog and all recorded `git remote -v` outputs agree). `CLAUDE.md` described `corlab` as a remote ("fetch/compare freely") and was corrected; a `git fetch corlab` attempt on 2026-10-04 failed for that reason.
+
+**Why:** a named remote is a target that `git push --all`, `--mirror`, `--tags` and a stray `git push corlab` can reach, and `git fetch --all` touches it; `corlab` is the only target of scientific references, so every write there should have to spell out the destination. The URL form needs no change to the git config and fits the go-ahead and refspec rules in `CLAUDE.md`.
+**Alternatives considered:** a named fetch-only `corlab` remote (gives `corlab/master` tracking refs and a plain `git fetch corlab`, convenient for comparing; the push side would need a deliberately invalid `pushurl` as a guard, which is easy to forget); a named remote with a normal push URL (convenient, but removes the friction the rule relies on).
+
 ## 2026-10-04 - Machine-readable and LLM access goes on the roadmap as step 9 (semantic web, llms.txt, MCP)
 
 The maintainer wants all information of the zoo to be accessible as well as possible for semantic web tooling and for LLMs: semantic web features, possibly `llms.txt`, possibly an MCP server, and similar. Recorded in `docs/RESTRUCTURING-PLAN.md` as step 9 (9a semantic web layer, 9b `llms.txt` and plain views, 9c MCP server as an uncommitted candidate); "machine-readable exports" is removed from the plan's not-part-of-the-plan list. Nothing is built yet; 9a starts after step 5 has landed on `corlab`.

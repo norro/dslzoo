@@ -1,12 +1,16 @@
-# TEST workflow (fork only): publishes the unchanged content of branch gh-pages
-# through GitHub Actions, to measure Pages semantics before the real generator
-# exists. Replace the checkout step with the generator build once it lands.
+# PREVIEW workflow (fork only): publishes a copy of branch gh-pages through
+# GitHub Actions with the stability notice added (plan step 3), so the notice
+# can be reviewed on the fork. Replace the checkout and preview steps with the
+# generator build once it lands. Not meant for corlab.
 name: Deploy site
 
 on:
   push:
     branches: [ai/dslzoo-refresh]
-    paths: [.github/workflows/pages.yml]
+    paths:
+      - .github/workflows/pages.yml
+      - .github/preview-notice.py
+      - docs/STABLE-REFERENCES.md
   workflow_dispatch:
 
 permissions:
@@ -21,10 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
         with:
           ref: gh-pages
           path: site
       - run: rm -rf site/.git
+      - run: python3 -m venv .venv && .venv/bin/pip install markdown
+      - run: .venv/bin/python .github/preview-notice.py site docs/STABLE-REFERENCES.md
       - run: echo "actions-deploy run=${{ github.run_id }} sha=${{ github.sha }}" > site/deploy-check.txt
       - uses: actions/upload-pages-artifact@v5
         with:

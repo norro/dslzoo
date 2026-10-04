@@ -24,7 +24,13 @@ Versioning follows [semver](https://semver.org/).
 - `.github/workflows/pages.yml` on the fork: test workflow that publishes the
   unchanged `gh-pages` content through GitHub Actions (step 7 trial). Verified
   on `norro.github.io/dslzoo`, then rolled back to the `gh-pages` source; see
-  DECISIONS.md.
+  DECISIONS.md. Since 2026-10-04 it publishes a preview with the stability
+  notice added (`.github/preview-notice.py`, stand-in for the generator).
+- `docs/STABLE-REFERENCES.md` (source text of the versions page) and the README
+  section "Stable references" (step 3 of the plan): the zoo is live and dynamic
+  on `corlab` and on the fork; the citable truth for the SIMPAR 2014 and JOSER
+  2016 surveys lies on `corlab` in pinned states; where to find them, what
+  stays stable and why.
 
 ### Changed
 - Plan rev 4 (`docs/RESTRUCTURING-PLAN.md`): scientific rigor re-scoped to

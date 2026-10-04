@@ -43,12 +43,27 @@ Versioning follows [semver](https://semver.org/).
   DECISIONS.md). The three `legacy-*` tags were re-created on the fork with
   the same targets and a message without the fork-only plan pointer, ahead of
   their push to `corlab`.
+- `generator/`: the new site generator (plan step 5, first version). `build.py`
+  builds the site from `dslzoo.bib`, `docs/STABLE-REFERENCES.md` and the
+  vocabulary in `vocabulary.toml`; it fails if the parsed entry count differs
+  from the file. New look without Bootstrap, jQuery, d3 or Google Charts;
+  sortable and filterable index; six removed legacy pages become redirect
+  stubs (`redirects.toml`). Deployed to the fork on every push to
+  `ai/dslzoo-refresh`; not released to `corlab` (DECISIONS.md).
+- `.gitignore` for `.venv/` and `site/`.
 - Plan step 5 changed to plan A: the new generator is written directly in this
   repository from public sources instead of in a private repository first;
   the peculiarities of the old site are not requirements of the generator
   (DECISIONS.md).
+- `.github/workflows/pages.yml` builds with the generator instead of copying
+  `gh-pages` and adding the note; the fork deploys on pushes to
+  `ai/dslzoo-refresh`. Not for `corlab` before the cutover (DECISIONS.md).
 - SIMPAR 2014 verified to print only the former address
   `http://cor-lab.org/robotics-dsl-zoo` (dead); plan statements corrected.
+
+### Removed
+- `.github/citation-note.py`: the generator renders the note and the versions
+  page itself.
 
 ## [0.8.2] - 2026-10-02
 

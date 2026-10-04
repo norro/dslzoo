@@ -1,17 +1,18 @@
-# Publishes the site with GitHub Pages through GitHub Actions: a copy of branch
-# gh-pages with the citation note added (.github/citation-note.py; versions
-# page from docs/STABLE-REFERENCES.md). The gh-pages branch stays untouched:
-# switching the Pages source back to it restores the unchanged site. Replace
-# the checkout and note steps with the generator build once it lands.
+# Builds the site from dslzoo.bib with generator/build.py and publishes it with
+# GitHub Pages through GitHub Actions. The gh-pages branch stays untouched as the
+# frozen legacy site: switching the Pages source back to it restores that site.
+# Pushes to ai/dslzoo-refresh deploy the fork (norro.github.io/dslzoo); pushes to
+# master deploy corlab once this file has been released there.
 name: Deploy site
 
 on:
   push:
-    branches: [master]
+    branches: [master, ai/dslzoo-refresh]
     paths:
       - .github/workflows/pages.yml
-      - .github/citation-note.py
+      - dslzoo.bib
       - docs/STABLE-REFERENCES.md
+      - generator/**
   workflow_dispatch:
 
 permissions:
@@ -26,13 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/checkout@v7
-        with:
-          ref: gh-pages
-          path: site
-      - run: rm -rf site/.git
-      - run: python3 -m venv .venv && .venv/bin/pip install markdown
-      - run: .venv/bin/python .github/citation-note.py site docs/STABLE-REFERENCES.md
+      - run: python3 -m venv .venv && .venv/bin/pip install -r generator/requirements.txt
+      - run: .venv/bin/python generator/build.py site
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

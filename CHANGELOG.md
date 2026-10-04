@@ -50,6 +50,8 @@ Versioning follows [semver](https://semver.org/).
   sortable and filterable index; six removed legacy pages become redirect
   stubs (`redirects.toml`). Deployed to the fork on every push to
   `ai/dslzoo-refresh`; not released to `corlab` (DECISIONS.md).
+- `docs/REMOVED-PAGES.md`: the six legacy pages the generator does not build
+  (what they were, where the originals are, how to restore one).
 - `.gitignore` for `.venv/` and `site/`.
 - Plan step 5 changed to plan A: the new generator is written directly in this
   repository from public sources instead of in a private repository first;

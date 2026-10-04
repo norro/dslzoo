@@ -27,6 +27,11 @@ Versioning follows [semver](https://semver.org/).
   DECISIONS.md.
 
 ### Changed
+- Plan rev 4 (`docs/RESTRUCTURING-PLAN.md`): scientific rigor re-scoped to
+  `corlab` and the references the publications cite; page names and anchors of
+  the legacy site no longer fixed; stability notice added; step 5a deferred,
+  step 6 reduced to a build test and entry-count guard (DECISIONS.md,
+  CLAUDE.md).
 - Never-move rule for the citation tags scoped to `corlab` (CLAUDE.md,
   DECISIONS.md). The three `legacy-*` tags were re-created on the fork with
   the same targets and a message without the fork-only plan pointer, ahead of

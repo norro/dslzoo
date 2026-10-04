@@ -6,6 +6,11 @@ robotics, both authored by Arne. Both cite the live
 `corlab.github.io/dslzoo` URL. **Any change that could break that citable
 URL needs to be called out explicitly, never silently.**
 
+**Rigor scope:** scientific rigor (stable cited references, bibliography
+intact with history and manual classification) binds what lands on or is
+served from `corlab`. `origin` is a working copy, not a reference target;
+no such rigor needed there. Detail: DECISIONS.md, 2026-10-04.
+
 ## Remotes - do not conflate
 
 - `origin` = `norro/dslzoo` (Arne's personal GitHub account) - **the only

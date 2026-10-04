@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart_pair %}
+{% block main %}
+<h1>{{ kind.heading }}</h1>
+<div class="prose">{{ kind.intro|safe }}</div>
+{{ chart_pair(charts) }}
+<ul class="terms">
+  {% for term in kind.terms %}
+  <li>
+    <h2><a href="./{{ term.page }}">{{ term.name }}</a> <span class="n">{{ term.count }}</span></h2>
+    <p>{{ term.description|safe }}</p>
+    {% if term.note %}<p>{{ term.note|safe }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

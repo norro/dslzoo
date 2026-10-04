@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% from "macros.html" import entry_table %}
+{% block main %}
+<h1>Index</h1>
+<p class="lead">All {{ count }} publications in the Robotics DSL Zoo. For a more structured overview have a look at the
+different {% for kind in kinds.values() %}<a href="./{{ kind.page }}">{{ kind.nav }}</a>{{ ', ' if not loop.last }}{% endfor %}.</p>
+<p class="filter">
+  <label for="filter">Filter</label>
+  <input type="search" id="filter" data-filter-for="index" placeholder="Title, author, key, tool ..." autocomplete="off">
+  <output id="filter-count" for="filter"></output>
+</p>
+{{ entry_table(rows, 'index', id='index') }}
+{% endblock %}

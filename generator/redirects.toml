@@ -1,0 +1,14 @@
+# Pages of the legacy site that no longer exist, mapped to their successor. GitHub
+# Pages cannot send HTTP redirects, so the build writes a stub page for each entry
+# (meta refresh, rel=canonical, script fallback that keeps query string and anchor).
+# The build fails if a target is not a generated page or an old name is one.
+#
+# The five 2015 subdomain pages (four of them empty on the legacy site) fold into
+# the Architectures and Programming subdomain; the PPT domain example discussed the
+# subdomains and is replaced by their overview.
+"components-subdomain.html" = "architectures-and-programming-subdomain.html"
+"composition-subdomain.html" = "architectures-and-programming-subdomain.html"
+"computation-subdomain.html" = "architectures-and-programming-subdomain.html"
+"communication-subdomain.html" = "architectures-and-programming-subdomain.html"
+"coordination-subdomain.html" = "architectures-and-programming-subdomain.html"
+"domain-examples.html" = "subdomains.html"

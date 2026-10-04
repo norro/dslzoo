@@ -1,0 +1,80 @@
+{# One bar chart: horizontal bars for terms (links), columns for years. #}
+{% macro chart(c, years=false) %}
+<figure class="chart">
+  <figcaption>{{ c.title }}</figcaption>
+  {% if years %}
+  <ol class="years">
+    {% for i in c['items'] %}
+    <li style="--v: {{ i.share }}" title="{{ i.label }}: {{ i.count }}"><span class="bar"></span><span class="yr"{% if not i.tick %} aria-hidden="true"{% endif %}>{{ i.label if i.tick else '' }}</span></li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <ol class="bars">
+    {% for i in c['items'] %}
+    <li style="--v: {{ i.share }}">
+      <span class="label">{% if i.href %}<a href="./{{ i.href }}">{{ i.label }}</a>{% else %}{{ i.label }}{% endif %}</span>
+      <span class="bar"></span>
+      <span class="n">{{ i.count }}</span>
+    </li>
+    {% endfor %}
+  </ol>
+  {% endif %}
+</figure>
+{% endmacro %}
+
+{% macro chart_pair(list) %}
+<div class="charts">
+  {{ chart(list[0]) }}
+  {{ chart(list[1], years=true) }}
+</div>
+{% endmacro %}
+
+{# Terms of one kind as links; terms outside the vocabulary stay plain text. #}
+{% macro term_links(terms) %}
+{% for t in terms %}{% if t.page %}<a href="./{{ t.page }}">{{ t.name }}</a>{% else %}<span class="unknown" title="Not in the controlled vocabulary">{{ t.name }}</span>{% endif %}{{ ', ' if not loop.last }}{% endfor %}
+{% endmacro %}
+
+{# A free-text value; placeholders such as "unknown" are shown muted. #}
+{% macro plain(value) %}{% if value|lower in ('unknown', 'none') %}<span class="muted">{{ value }}</span>{% else %}{{ value }}{% endif %}{% endmacro %}
+
+{# Entry table. columns: "index" shows subdomains and phases, "category" formalism and tool. #}
+{% macro entry_table(rows, columns, id=none) %}
+<div class="table-wrap">
+<table class="entries" {% if id %}id="{{ id }}"{% endif %}>
+  <thead>
+    <tr>
+      <th data-sort>Key</th><th data-sort>Title</th><th data-sort>Authors</th><th data-sort>Year</th>
+      {% if columns == 'index' %}
+      <th>Subdomains</th><th>Phases</th>
+      {% else %}
+      <th data-sort>Formalism</th><th data-sort>Tool</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    {% set e = row.entry %}
+    <tr>
+      <td class="key">{% if row.anchor %}<a href="#{{ e.key }}" id="{{ e.key }}">{{ e.key }}</a>{% else %}{{ e.key }}{% endif %}</td>
+      <td class="title">
+        {% if e.link %}<a href="{{ e.link }}">{{ e.title }}</a>{% else %}{{ e.title }}{% endif %}
+        {% if e.venue %}<span class="venue">{{ e.venue }}</span>{% endif %}
+        {% if e.website or e.download %}
+        <span class="links">{% if e.website %}<a href="{{ e.website }}">website</a>{% endif %}{% if e.download %}<a href="{{ e.download }}">download</a>{% endif %}</span>
+        {% endif %}
+      </td>
+      <td class="authors">{{ e.authors }}</td>
+      <td class="year">{{ e.year if e.year else '' }}</td>
+      {% if columns == 'index' %}
+      <td>{{ term_links(e.terms['subdomain']) }}</td>
+      <td>{{ term_links(e.terms['phase']) }}</td>
+      {% else %}
+      <td>{{ plain(e.formalism) }}</td>
+      <td>{{ plain(e.tool) }}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endmacro %}

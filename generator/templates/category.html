@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "macros.html" import chart_pair, entry_table %}
+{% block main %}
+<p class="eyebrow"><a href="./{{ kind.page }}">{{ kind.label }}</a></p>
+<h1>{{ term.name }}</h1>
+<p class="lead">{{ term.description|safe }}</p>
+{% if term.note %}<p>{{ term.note|safe }}</p>{% endif %}
+<p class="muted">{{ term.count }} publication{{ '' if term.count == 1 else 's' }}</p>
+{% if term.count %}
+{{ chart_pair(charts) }}
+{% for group in groups %}
+<section>
+  {% if group.term %}
+  <h2><a href="./{{ group.term.page }}">{{ group.term.name }}</a></h2>
+  <p class="group-description">{{ group.term.description|safe }}</p>
+  {% else %}
+  <h2>Not assigned to a {{ by.noun }}</h2>
+  {% endif %}
+  {{ entry_table(group.rows, 'category') }}
+</section>
+{% endfor %}
+{% endif %}
+{% endblock %}

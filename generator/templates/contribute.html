@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Contribute</h1>
+<p class="lead">We are constantly updating and extending the Robotics DSL Zoo and are waiting for your input!</p>
+<div class="prose">
+  <p>All sources of this Robotics DSL Zoo are hosted in GitHub in
+  <a href="https://github.com/corlab/dslzoo">corlab/dslzoo</a>. Feel free to fork the repository and make additions to
+  the source files. Check the GitHub help on
+  <a href="https://help.github.com/articles/using-pull-requests/">pull requests</a> on how to request your changes to be
+  added to the zoo.</p>
+  <ol>
+    <li>Go on GitHub and fork the <a href="https://github.com/corlab/dslzoo">corlab/dslzoo repository</a>.</li>
+    <li>Add a new entry to <a href="https://github.com/corlab/dslzoo/blob/master/dslzoo.bib">dslzoo.bib</a> of your fork.
+    The format is:
+<pre>@inproceedings{surnameyearfirstword,
+  annote = {Your two to three sentence summary of the core contribution},
+  author = {John Doe and Other Authors},
+  booktitle = {International Conference on DSL Stuff},
+  doi = {12.3456/DOI.1234.1234567},
+  isbn = {978-1-2345-5678-9},
+  keywords = {dsl-zoo, ...},
+  month = jan,
+  pages = {12--34},
+  publisher = {IEEE},
+  title = {Publication Title},
+  url = {http://publication.link},
+  year = {2020},
+  zoo-subdomains = {{ '{' }}{{ kinds['subdomain'].terms|map(attribute='name')|join(', ') }}{{ '}' }},
+  zoo-ap-subdomains = {{ '{' }}{{ kinds['discipline'].terms|map(attribute='name')|join(', ') }}{{ '}' }},
+  zoo-phases = {{ '{' }}{{ kinds['phase'].terms|map(attribute='name')|join(', ') }}{{ '}' }},
+  zoo-tool = {DSL Tool / Workbench (e.g. 'EMF xtext')},
+  zoo-website = {http://dsl.homepage.link},
+  zoo-download = {http://dsl.download.link},
+}</pre>
+    <p>The values of the three <code>zoo-</code> classification fields are lists; use the terms as spelled here, others
+    get no page. There are a lot of free BibTeX tools out there to support you with this format, some of them might hide
+    the zoo-specific custom fields though.</p></li>
+    <li>After you added a publication, place a
+    <a href="https://help.github.com/articles/using-pull-requests/">pull request</a> (preferably one for each
+    publication) to <a href="https://github.com/corlab/dslzoo">corlab/dslzoo</a>.</li>
+  </ol>
+</div>
+{% endblock %}

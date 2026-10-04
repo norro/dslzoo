@@ -1,0 +1,152 @@
+# Controlled vocabulary of the zoo: the three classification axes, their terms and the
+# texts of the overview pages. The texts are taken from the public pages of the legacy
+# site (branch gh-pages). The key of each kind is its name in the generator; `field` is
+# the bibliography field that carries the terms, `group_by` the kind used to group the
+# entries on the page of a term. Descriptions and intros are trusted HTML.
+
+[subdomain]
+label = "Subdomain"
+noun = "subdomain"
+nav = "Subdomains"
+heading = "DSLs per Subdomain"
+field = "zoo-subdomains"
+group_by = "phase"
+page = "subdomains.html"
+intro = "<p>One analysis to structure the domain is grouping the DSLs and their publications by common semantics, abstractions and use-cases. Here, Part&nbsp;A (<i>Robotics Foundations</i>) covers the fundamental principles and methods needed to create a robotic system. While developing such a system, various challenges have to be tackled in kinematics, dynamics, actuation, sensing, motion planning, control, programming and task planning. Thus, the subdomains chosen in this overview correspond to these categories.</p> <p>The following chart shows the subdomains and the numbers of publications we found in the subdomains respectively. This is intended to serve as a map for potential DSL users as well as foster discussion and reuse of languages and the underlying models for DSL developers.</p>"
+
+[[subdomain.terms]]
+name = "Kinematics"
+description = "Kinematics refers to the motion of bodies in robotic mechanisms without taking the forces/torques causing the motion into account. Hence, it includes general representations of the position and orientation of a body, the relation among the joints as well as conventions for representing the geometry of rigid bodies connected by joints. This subdomain corresponds to Part A, Chapter 1 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Dynamics"
+description = "Dynamics covers the relationships between actuation and contact forces that act on robot mechanisms. Such a mechanism in this sense is described by rigid bodies connected by joints. Furthermore, it pertains to the acceleration and motion trajectories resulting from these relationships. This subdomain corresponds to Part A, Chapter 2 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Mechanisms and Actuation"
+description = "Mechanisms and Actuation focuses on the mechanical structure of a robot that creates its movable skeleton. All elements that cause a robotic mechanism to move – so called actuators – are addressed along with the mathematical model that is used to characterize the robot's performance. This subdomain corresponds to Part A, Chapter 3 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Sensing and Estimation"
+description = "Sensing and Estimation ranges from robot-state estimation for feedback control to task-oriented interpretation of sensor data of any kind. Apart from estimation techniques, this category also covers different kinds of information representations. This subdomain corresponds to Part A, Chapter 4 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Motion Planning"
+description = "Motion Planning covers collision-free trajectory planning for mobile platforms as well as robot actuators. This subdomain corresponds to Part A, Chapter 5 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Motion Control"
+description = "Motion Control addresses the dynamical model of robotic manipulators. This includes different controller approaches, such as independent-joint, PID as well as torque control. This subdomain corresponds to Part A, Chapter 6 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Force Control"
+description = "Force Control pertains to the achievement of a robust and dynamic behavior of robotic systems in compliant interaction between robot and environment. Similar to the Motion Control category, it includes different control aspects, e.g., stiffness and impedance control. This subdomain corresponds to Part A, Chapter 7 in the Handbook of Robotics."
+
+[[subdomain.terms]]
+name = "Architectures and Programming"
+description = "Architectures and Programming refers to the way a robotic system is designed on the software-level. It can be divided into architectural structure and architectural style. The structure is represented by how the system is split up into subsystems and how they interact with each other. The style however addresses the underlying computational concepts. This subdomain corresponds to Part A, Chapter 8 in the Handbook of Robotics."
+note = "Due to its large number of entries, the Architectures and Programming subdomain is further subdivided into its disciplines, see <a href=\"architectures-and-programming-disciplines.html\">Architectures and Programming Disciplines</a>."
+
+[[subdomain.terms]]
+name = "Reasoning Methods"
+description = "Reasoning Methods focuse on symbol-based reasoning and knowledge representation. It covers logic- as well as probability-based approaches. Furthermore, this category also addresses learning, such as inductive logic learning, neuronal networks and reinforcement learning. This subdomain corresponds to Part A, Chapter 9 in the Handbook of Robotics."
+
+[discipline]
+label = "A&P discipline"
+noun = "A&P discipline"
+nav = "A&P Disciplines"
+heading = "DSLs per Architectures and Programming Discipline"
+field = "zoo-ap-subdomains"
+group_by = "phase"
+page = "architectures-and-programming-disciplines.html"
+intro = "<p>Due to the large number of entries in the <a href=\"architectures-and-programming-subdomain.html\">Architectures and Programming subdomain</a> we group the DSLs and their publications following the Software Engineering Body of Knowledge (SWEBOK), namely <i>Software Design</i> (Section 2.2) and <i>Software Structure and Architecture</i> (Section 2.3).</p> <p>The following chart shows the identified disciplines according to the Software Engineering Body of Knowledge (SWEBOK) and the numbers of publications we found in the disciplines respectively. This is intended to serve as a map for potential DSL users as well as foster discussion and reuse of languages and the underlying models for DSL developers.</p>"
+
+[[discipline.terms]]
+name = "Concurrency"
+description = "Decomposition of software into processes, tasks, and threads, dealing with related issues of efficiency, atomicity, synchronization, and scheduling. This discipline corresponds to the Section 2.2.1 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Control and Handling of Events"
+description = "Organization of data and control flow as well as handling of reactive and temporal events. This discipline corresponds to the Section 2.2.2 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Data Persistence"
+description = "Handling of long-lived data. This discipline corresponds to the Section 2.2.3 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Distribution of Components"
+description = "Distribution of the software across the hardware, communication of components, and how can middleware be used to deal with heterogeneous software. This discipline corresponds to the Section 2.2.4 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Error and Exception Handling and Fault Tolerance"
+description = "Prevention, toleration, and processing of errors as well as dealing with exceptional conditions. This discipline corresponds to the Section 2.2.5 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Interaction and Presentation"
+description = "Structuring and organization of interactions with users as well as the presentation of information. This discipline corresponds to the Section 2.2.6 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Security and Safety"
+description = "Prevention of unauthorized access to and manipulation of information and other resources. Limiting of damage, continuation of service, speed-up of repair, and how to fail and recover securely. Ensuring safety of humans in the presence of robots. This discipline corresponds to the Section 2.2.7 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Architectural Structures and Viewpoints"
+description = "Description of architectural structures and software designs in general by independent and orthogonal views. This discipline corresponds to the Section 2.3.1 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Architectural Styles"
+description = "Descriptions and guidance for the high-level organization of software providing \"a specialization of element and relation types, together with a set of constraints on how they can be used\". This discipline corresponds to the Section 2.3.2 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Design Patterns"
+description = "Provide \"a common solution to a common problem in a given context\". Typically employed at a lower abstraction level than architectural styles. This discipline corresponds to the Section 2.3.3 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Architecture Design Decisions"
+description = "Impact of quality attributes and the tradeoffs among competing quality attributes that provide the basis for  design decisions. This discipline corresponds to the Section 2.3.4 in the SWEBOK."
+
+[[discipline.terms]]
+name = "Families of Programs and Frameworks"
+description = "Software product lines or Frameworks encapsulating commonalities among elements and targeting re-use by designing customizable components that account for variability. This discipline corresponds to the Section 2.3.5 in the SWEBOK."
+
+[phase]
+label = "Development phase"
+noun = "development phase"
+nav = "Development Phases"
+heading = "DSLs per Development Phase"
+field = "zoo-phases"
+group_by = "subdomain"
+page = "phases.html"
+intro = "<p>One analysis to structure the domain is grouping the DSLs and their publications along the development phases they support.</p> <p>The following chart shows the development phases and the numbers of publications we found respectively. This is intended to serve as a map for potential DSL users as well as foster discussion and reuse of languages and the underlying models for DSL developers.</p>"
+
+[[phase.terms]]
+name = "Scenario Building"
+description = "In the Scenario Building phase, environment features, constraints and characteristics are defined. Furthermore, the robot's task is defined. This includes the specification of customer acceptance tests to be performed in the specified and potentially generalized environment."
+
+[[phase.terms]]
+name = "Functional Design"
+description = "In the Functional Design phase, hardware requirements and top-level functionalities are derived based on the scenario definition. Furthermore, top-level functionalities are decomposed and dependencies among them are identified. Also an initial functional design stating which functionalities interact with each other is developed."
+
+[[phase.terms]]
+name = "Platform Building"
+description = "In the Platform Building phase, the robot hardware is determined. This includes the selection and potential configuration of robot's sensors and actuators meeting the requirements defined in the functional design phase."
+
+[[phase.terms]]
+name = "Capability Building"
+description = "In the Capability Building phase, basic and composite components are constructed up to the application-level and constraints for their deployment are specified. This also includes the specification and eventually generation of additional knowledge required for component execution such as knowledge bases and training data."
+
+[[phase.terms]]
+name = "System Deployment"
+description = "In the System Deployment phase, top-level component(s) are packaged into a complete application system which defines a mapping of components and composites to computational units. Furthermore, features and procedures for system launch management are developed."
+
+[[phase.terms]]
+name = "System Benchmarking"
+description = "In the System Benchmarking phase, certain test procedures targeting different quality attributes are performed such as stress testing, safety and security testing, reliability and durability testing, and performance testing."
+
+[[phase.terms]]
+name = "Product Deployment"
+description = "In the Product Deployment phase, an application is tailored to a specific robot system. This includes also the installation of maintenance instrumentation and a final target platform system testing."
+
+[[phase.terms]]
+name = "Product Maintenance"
+description = "In the Product Maintenance phase, the robot application is operated and maintained. This includes eventually the analysis of log files and the tuning of system parameters."

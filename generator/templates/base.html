@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} - {% endif %}Robotics DSL Zoo</title>
+<meta name="description" content="An annotated bibliography of domain-specific languages in robotics and automation technology.">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="images/favicon.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+{% block head %}{% endblock %}
+<script src="app.js" defer></script>
+</head>
+<body>
+<aside class="citation-note" role="note">
+  This is a <strong>dynamic, live zoo</strong>. The <strong>citable state</strong> for the
+  <strong>SIMPAR 2014</strong> and <strong>JOSER 2016</strong> surveys <strong>lies on corlab</strong>,
+  in <strong>pinned states that do not change</strong>.
+  <a href="./versions.html"><strong>Where to find it, and why it stays stable</strong></a>
+</aside>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./index.html">Robotics DSL Zoo</a>
+    <nav aria-label="Main">
+      <ul>
+        {% for label, target in nav %}
+        <li><a href="./{{ target }}"{% if target == active %} aria-current="page"{% endif %}>{{ label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+{% block main %}{% endblock %}
+</main>
+<footer class="wrap">
+  <p>An important DSL is missing? Here is how to <a href="./contribute.html">contribute</a>.
+  When using content of the Robotics DSL Zoo or referring to it, please consider citing our survey paper:</p>
+  <pre>{% raw %}@article{nordmann2016survey,
+  author  = {Nordmann, Arne and Hochgeschwender, Nico and Wigand, Dennis Leroy and Wrede, Sebastian},
+  journal = {Journal of Software Engineering in Robotics (JOSER)},
+  number  = {1},
+  pages   = {75--99},
+  title   = {{A Survey on Domain-Specific Modeling and Languages in Robotics}},
+  volume  = {7},
+  year    = {2016},
+}{% endraw %}</pre>
+  <p>
+    A. Nordmann, N. Hochgeschwender, D. Wigand and S. Wrede,
+    <a href="https://doi.org/10.6092/JOSER_2016_07_01_p75">&ldquo;A Survey on Domain-Specific Modeling and Languages in Robotics&rdquo;</a>,
+    Journal of Software Engineering for Robotics (JOSER), 2016.<br>
+    A. Nordmann, N. Hochgeschwender and S. Wrede,
+    <a href="https://pub.uni-bielefeld.de/publication/2685039">&ldquo;A Survey on Domain-Specific Languages in Robotics&rdquo;</a>,
+    International Conference on Simulation, Modeling, and Programming for Autonomous Robots (SIMPAR), 2014.
+  </p>
+  <p class="muted">Built on {{ built }} from {{ count }} publications in
+  <a href="https://github.com/corlab/dslzoo/blob/master/dslzoo.bib">dslzoo.bib</a>.</p>
+</footer>
+</body>
+</html>

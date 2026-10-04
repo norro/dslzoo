@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block head %}
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<link rel="canonical" href="{{ target }}">
+<script>location.replace({{ target|tojson }} + location.search + location.hash);</script>
+{% endblock %}
+{% block main %}
+<h1>This page has moved</h1>
+<p class="lead">The page <code>{{ page }}</code> no longer exists. Its successor is
+<a href="{{ target }}">{{ target[2:] }}</a>. You are redirected automatically.</p>
+{% endblock %}

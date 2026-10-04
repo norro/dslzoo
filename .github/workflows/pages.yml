@@ -1,15 +1,16 @@
-# PREVIEW workflow (fork only): publishes a copy of branch gh-pages through
-# GitHub Actions with the stability notice added (plan step 3), so the notice
-# can be reviewed on the fork. Replace the checkout and preview steps with the
-# generator build once it lands. Not meant for corlab.
+# Publishes the site with GitHub Pages through GitHub Actions: a copy of branch
+# gh-pages with the citation note added (.github/citation-note.py; versions
+# page from docs/STABLE-REFERENCES.md). The gh-pages branch stays untouched:
+# switching the Pages source back to it restores the unchanged site. Replace
+# the checkout and note steps with the generator build once it lands.
 name: Deploy site
 
 on:
   push:
-    branches: [ai/dslzoo-refresh]
+    branches: [master]
     paths:
       - .github/workflows/pages.yml
-      - .github/preview-notice.py
+      - .github/citation-note.py
       - docs/STABLE-REFERENCES.md
   workflow_dispatch:
 
@@ -31,8 +32,7 @@ jobs:
           path: site
       - run: rm -rf site/.git
       - run: python3 -m venv .venv && .venv/bin/pip install markdown
-      - run: .venv/bin/python .github/preview-notice.py site docs/STABLE-REFERENCES.md
-      - run: echo "actions-deploy run=${{ github.run_id }} sha=${{ github.sha }}" > site/deploy-check.txt
+      - run: .venv/bin/python .github/citation-note.py site docs/STABLE-REFERENCES.md
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

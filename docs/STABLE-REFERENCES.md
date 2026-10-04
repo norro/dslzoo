@@ -2,16 +2,16 @@
 
 ## A live zoo
 
-The Robotics DSL Zoo is a dynamic, live DSL and model zoo for robotics:
+The Robotics DSL Zoo is a **dynamic, live** DSL and model zoo for robotics:
 entries are added, the classification evolves and the site is regenerated.
 This holds for `corlab/dslzoo` (<https://corlab.github.io/dslzoo/>) as well as
-for the fork `norro/dslzoo` (<https://norro.github.io/dslzoo/>). What the live
-site shows is the zoo as it is today, not a fixed state.
+for the fork `norro/dslzoo` (<https://norro.github.io/dslzoo/>). **What the live
+site shows is the zoo as it is today, not a fixed state.**
 
 ## The citable state
 
-The citable truth for the SIMPAR 2014 and JOSER 2016 surveys lies on `corlab`
-(<https://github.com/corlab/dslzoo>), in pinned states that do not change.
+**The citable truth for the SIMPAR 2014 and JOSER 2016 surveys lies on `corlab`**
+(<https://github.com/corlab/dslzoo>), **in pinned states that do not change.**
 
 ### JOSER 2016
 
@@ -58,7 +58,7 @@ git checkout joser16        # bibliography of the JOSER 2016 survey
 git checkout joser16-site   # generated site of that time
 ```
 
-## Editions (draft wording)
+## Editions
 
 The website was hand-curated from 2014 to 2020. Its modernization started on
 2026-09-28; the hand-curated edition is succeeded by a generated edition that

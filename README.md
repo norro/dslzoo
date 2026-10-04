@@ -2,7 +2,8 @@ Robotics DSL Zoo - v0.8.2
 =========================
 
 This is the repository that hosts the bib sources of the Robotics DSL Zoo. The
-generated website is hosted in the gh-pages branch and is online here:
+generated website (the gh-pages branch, published with GitHub Actions) is
+online here:
 http://corlab.github.io/dslzoo/
 
 See [CHANGELOG.md](CHANGELOG.md) for release history and
@@ -12,9 +13,9 @@ The draft restructuring plan is in [docs/RESTRUCTURING-PLAN.md](docs/RESTRUCTURI
 Stable references
 -----------------
 
-This is a dynamic, live Robotics DSL and model zoo, on `corlab` as well as on
-its fork `norro/dslzoo`. The citable truth for the SIMPAR 2014 and JOSER 2016
-surveys lies on `corlab` in pinned states that do not change (tags such as
+This is a **dynamic, live** Robotics DSL and model zoo, on `corlab` as well as on
+its fork `norro/dslzoo`. **The citable truth for the SIMPAR 2014 and JOSER 2016
+surveys lies on `corlab` in pinned states that do not change** (tags such as
 `joser16`, the branch `query`). Where to find it, what stays stable and why:
 [docs/STABLE-REFERENCES.md](docs/STABLE-REFERENCES.md).
 

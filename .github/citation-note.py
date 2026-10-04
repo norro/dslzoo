@@ -1,12 +1,11 @@
-"""Fork-only preview: put the citation note into a copy of the legacy site.
+"""Add the citation note to a copy of the legacy site (stand-in for the generator).
 
-Stand-in for the generator (plan step 5), used by pages.yml to review the note
-on the fork. Renders docs/STABLE-REFERENCES.md to versions.html in the frame of
-the legacy pages, adds a nav entry to every page and a note above the
-navigation on every page (design: DECISIONS.md, 2026-10-03). Fails loudly if
-the legacy markup no longer matches.
+Used by pages.yml until the generator exists. Renders docs/STABLE-REFERENCES.md
+to versions.html in the frame of the legacy pages, adds a nav entry and a note
+above the navigation to every page. Fails loudly if the legacy markup no longer
+matches.
 
-Usage: preview-notice.py SITE_DIR NOTICE_MD
+Usage: citation-note.py SITE_DIR NOTICE_MD
 """
 import pathlib
 import re
@@ -15,10 +14,13 @@ import sys
 import markdown
 
 NOTE = (
-    '<div class="alert alert-info" role="alert" style="margin:0;border-radius:0">'
-    "This is a dynamic, live zoo. The citable state for the SIMPAR 2014 and "
-    "JOSER 2016 surveys lies on corlab, in pinned states that do not change. "
-    '<a href="./versions.html">Where to find it, and why it stays stable</a></div>'
+    '<div class="alert alert-info" role="alert" '
+    'style="margin:0;border:5px solid #000;border-radius:0;font-size:16px">'
+    "This is a <strong>dynamic, live zoo</strong>. The <strong>citable state</strong> "
+    "for the <strong>SIMPAR 2014</strong> and <strong>JOSER 2016</strong> surveys "
+    "<strong>lies on corlab</strong>, in <strong>pinned states that do not "
+    'change</strong>. <a href="./versions.html"><strong>Where to find it, and why '
+    "it stays stable</strong></a></div>"
 )
 NAV_ENTRY = '<li><a href="./versions.html">Versions</a></li>'
 CONTRIBUTE_LI = re.compile(r'<li[^>]*>\s*<a href="\./contribute\.html">Contribute</a>\s*</li>')
